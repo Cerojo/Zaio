@@ -1,9 +1,13 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         print(containsDuplicates(new int[]{ 5, 2, 17, 13, 12, 19, 5, 7, 3, 9, 15 }));
-        print(Arrays.toString(rotateImage(new int[][]{{1,2,3},{4,5,6},{7,8,9}})[0]));
+        for(int[] a: rotateImage(new int[][]{{1,2,3},{4,5,6},{7,8,9}})){
+            print(Arrays.toString(a));
+        }
+        print(firstDuplicate(new int[]{2, 1, 3, 5, 3, 2}));
     }
 
     private static boolean containsDuplicates(int[] array){
@@ -24,6 +28,19 @@ public class Main {
             rotated[i/size][i%size] = image[(mul-1-i)%size][i/size];
         }
         return rotated; //Rotated image
+    }
+
+    private static int firstDuplicate(int[] array){
+        ArrayList<Integer> arrayList = new ArrayList<>(); //Contain unique integers
+        for(int i: array){ //Go through integers
+            if(!arrayList.contains(i)){ //Check if unique integer
+                arrayList.add(i); //Add unique integer
+            }
+            else{
+                return i; //Return first occurrence
+            }
+        }
+        return -1; //No duplicate found
     }
 
     private static void print(Object text){
